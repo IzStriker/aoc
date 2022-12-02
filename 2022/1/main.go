@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 	"strconv"
 )
 
@@ -40,7 +39,6 @@ func part1() {
 	fmt.Println(max)
 }
 
-// 209914
 func part2() {
 	nums := []int{-1, -1, -1}
 	current := 0
@@ -55,16 +53,19 @@ func part2() {
 
 	for scanner.Scan() {
 		value, err := strconv.Atoi(scanner.Text())
-		// fmt.Println(value)
 		if err != nil {
-			nums = append(nums, current)
+			for i := 0; i < len(nums); i++ {
+				if current > nums[i] {
+					nums = append(nums[:i+1], nums[i:]...)
+					nums[i] = current
+					nums = nums[:3]
+					break
+				}
+			}
 			current = 0
 		} else {
 			current += value
 		}
 	}
-	sort.Slice(nums, func(i, j int) bool {
-		return nums[i] > nums[j]
-	})
 	fmt.Println(nums[0] + nums[1] + nums[2])
 }
