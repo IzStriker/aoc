@@ -57,7 +57,7 @@ def part2():
     seed_ranges = []
     i = 0
     while i < len(seeds):
-        seed_ranges.append([seeds[i], seeds[i+1]])
+        seed_ranges.append((seeds[i], seeds[i] + seeds[i+1]))
         i += 2
 
     maps = {}
@@ -75,32 +75,19 @@ def part2():
             source_start = int(line[0])
             dest_start = int(line[1])
             length = int(line[2])
-            maps[current_map].append([source_start, dest_start, length])
+            maps[current_map].append((source_start, dest_start, length))
     
     values = []
 
-    for seed_range in seed_ranges:
-        for seed in range(seed_range[0], seed_range[0] + seed_range[1]):
-            map = "seed"
-            current_value = seed
-            while map in guide:
-                current_map = maps[f"{map}-to-{guide[map]}"] 
-                
-                for value_range in current_map:
-                    dest_start = value_range[0]
-                    source_start = value_range[1]
-                    length = value_range[2]
+    map = "seed"
+    ranges = seed_ranges
+    while map in guide:
+        current_map = maps[f"{map}-to-{guide[map]}"]
+        new_ranges = []
+        for value_range in current_map:
+            source_start, dest_start, length = value_range
+            f
 
-                    if current_value >= source_start and current_value <= source_start + length:
-                        current_value = dest_start + (current_value - source_start)
-                        break
-                map = guide[map]
-            values.append(current_value)
-
-    
-    print(min(values))
-
-    
 
 if __name__ == "__main__":
     part2()
