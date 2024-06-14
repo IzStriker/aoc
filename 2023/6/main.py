@@ -52,5 +52,6 @@ def part2():
         speed += 1
 
     print(wins)
+    
 if __name__ == "__main__":
     part2()
