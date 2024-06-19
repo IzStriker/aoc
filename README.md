@@ -78,6 +78,7 @@ My solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 | [7](./2023/7/) | Python |
 | [8](./2023/8/) | Python |
 | [9](./2023/9/) | Python |
+| [10](./2023/10/) | Python |
 </td>
 </tr>
 </table>
